@@ -5,16 +5,15 @@ on:
       - master
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: All things angular
-      uses: AhsanAyaz/angular-deploy-gh-pages-actions@[version]
-      with:
-        github_access_token: ${{ secrets.ACCESS_TOKEN }} 
-        build_configuration: staging 
-        base_href: /   
-        deploy_branch: gh-pages
-        angular_dist_build_folder: dist/sir3d
+      - uses: actions/checkout@v2
+      - name: Angular Deploy gh-pages Actions
+        uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
+        with:
+          github_access_token: ${{ secrets.ACCESS_TOKEN }}
+          build_configuration: staging
+          base_href: /
+          deploy_branch: gh-pages
+          angular_dist_build_folder: dist/sir3d
