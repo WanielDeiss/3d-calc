@@ -1,4 +1,4 @@
 import { Printer } from '../printer.interface';
-import * as Creality from './creality';
+import Creality from './creality';
 
 export default [...Creality] as Printer[];
