@@ -1,1 +1,34 @@
-<p>index works!</p>
+<div class="row">
+    <div class="col-md">
+      <ul ngbNav #nav="ngbNav" class="nav nav-tabs">
+        <li ngbNavItem>
+          <a ngbNavLink>Printer</a>
+          <ng-template ngbNavContent>
+            <app-printer></app-printer>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Electricity Provider</a>
+          <ng-template ngbNavContent>
+            <app-electricity-provider></app-electricity-provider>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Filament</a>
+          <ng-template ngbNavContent>
+            <app-filament></app-filament>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav"></div>
+    </div>
+    <div class="col-md-auto">
+      <div class="calc-results">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Costs</h5>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
