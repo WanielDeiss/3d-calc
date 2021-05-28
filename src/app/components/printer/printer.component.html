@@ -1,6 +1,29 @@
 <div class="row">
   <div class="col-md-auto">
-    <label for="typeahead-format">Search for a state:</label>
-    <input id="typeahead-format" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" [resultFormatter]="formatter" />
+    <label for="printer">Drucker</label>
+    <input
+      id="printer"
+      type="text"
+      class="form-control"
+      [(ngModel)]="selectedPrinter"
+      [inputFormatter]="formatter"
+      [resultFormatter]="formatter"
+      [ngbTypeahead]="search"
+      [editable]="false"
+    />
+  </div>
+  <div class="col-auto">
+    <label for="wattage">Gesamtleistung</label>
+    <div class="input-group mb-2 mr-sm-2">
+      <input
+        id="wattage"
+        [value]="selectedPrinter?.wattage"
+        type="number"
+        class="form-control text-right"
+      />
+      <div class="input-group-append">
+        <div class="input-group-text">watt</div>
+      </div>
+    </div>
   </div>
 </div>

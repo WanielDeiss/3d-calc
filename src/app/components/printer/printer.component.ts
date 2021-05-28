@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { Observable, OperatorFunction } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { Printer } from 'src/app/data/printer.interface';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+} from 'rxjs/operators';
+import { Printer } from '../../data/printer.interface';
 import Printers from '../../data/printers';
 
 @Component({
@@ -10,24 +15,25 @@ import Printers from '../../data/printers';
   styleUrls: ['./printer.component.scss'],
 })
 export class PrinterComponent {
+  public selectedPrinter?: Printer;
+
   constructor() {
     console.log('wat', Printers);
   }
 
-  public model: any;
+  formatter = (printer: Printer) => `${printer.producer} ${printer.model}`;
 
-  formatter = (result: string) => result.toUpperCase();
-
-  search: OperatorFunction<string, readonly string[]> = (
+  search: OperatorFunction<string, readonly Printer[]> = (
     text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
+      filter((term) => term.length >= 2),
       map((term) =>
-        term === ''
-          ? []
-          : Printers.map((p) => `${p.producer} ${p.model}`).slice(0, 10)
+        Printers.filter((printer) =>
+          new RegExp(term, 'mi').test(`${printer.producer} ${printer.model}`)
+        ).slice(0, 10)
       )
     );
 }
