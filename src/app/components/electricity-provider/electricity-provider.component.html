@@ -1,1 +1,29 @@
-<p>electricity-provider works!</p>
+<div class="row">
+  <div class="col-md-auto">
+    <label for="printer">Stromanbieter</label>
+    <input
+      id="printer"
+      type="text"
+      class="form-control"
+      [(ngModel)]="selectedProvider"
+      [inputFormatter]="formatter"
+      [resultFormatter]="formatter"
+      [ngbTypeahead]="search"
+      [editable]="false"
+    />
+  </div>
+  <div class="col-auto">
+    <label for="wattage">Preis pro kWh</label>
+    <div class="input-group mb-2 mr-sm-2">
+      <input
+        id="wattage"
+        [value]="selectedProvider?.price"
+        type="number"
+        class="form-control text-right"
+      />
+      <div class="input-group-append">
+        <div class="input-group-text">&euro;</div>
+      </div>
+    </div>
+  </div>
+</div>
